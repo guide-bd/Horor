@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sudden Face</title>
+
+<style>
+/* Sudden face */
+#face {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("images.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+/* Show face when active */
+#face.show {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="showFace()">Show Face</button>
+
+<div id="face"></div>
+
+<script>
+function showFace() {
+  const face = document.getElementById("face");
+  face.classList.add("show");
+
+  // Hide again after 1 second (optional)
+  setTimeout(() => {
+    face.classList.remove("show");
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
