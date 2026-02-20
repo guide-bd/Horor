@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>DO NOT OPEN</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Slow zoom effect */
+body{
+  animation:zoom 20s infinite alternate;
+}
+@keyframes zoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+
+/* Message box */
+.box{
+  margin-top:120px;
+  font-size:26px;
+}
+
+/* Sudden face */
+#face{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url('https://i.imgur.com/8Q2QZ7v.png') center/cover no-repeat;
+  opacity:0;
+  transition:0.2s;
+}
+
+/* Dark overlay */
+#dark{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  opacity:0;
+  transition:3s;
+}
+
+/* Glitch text */
+.glitch{
+  color:red;
+  font-size:30px;
+  animation:glitch 0.3s infinite;
+}
+@keyframes glitch{
+  0%{transform:translate(2px,0)}
+  50%{transform:translate(-2px,0)}
+  100%{transform:translate(2px,0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+আজ রাত তোমার পরীক্ষা...<br>
+সবাই ঘুমিয়ে গেছে...<br><br>
+হঠাৎ দরজায় টোকা...
+</div>
+
+<div id="dark"></div>
+<div id="face"></div>
+
+<audio id="knock">
+<source src="https://www.myinstants.com/media/sounds/door-knocking.mp3">
+</audio>
+
+<audio id="scream">
+<source src="https://www.myinstants.com/media/sounds/horror-scream.mp3">
+</audio>
+
+<script>
+
+// Door knock
+setTimeout(()=>{
+ document.getElementById("knock").play();
+},4000);
+
+// Darkness
+setTimeout(()=>{
+ document.getElementById("dark").style.opacity=0.9;
+},7000);
+
+// Whisper text
+setTimeout(()=>{
+ document.body.innerHTML +=
+ "<p class='glitch'>পিছনে তাকাও...</p>";
+},9000);
+
+// Sudden face jump scare
+setTimeout(()=>{
+ document.getElementById("face").style.opacity=1;
+ document.getElementById("scream").play();
+},11000);
+
+// After scare message
+setTimeout(()=>{
+ document.body.innerHTML =
+ "<h1 style='color:red'>👁️ সে এখন তোমার পিছনে দাঁড়িয়ে আছে</h1>";
+},13000);
+
+</script>
+
+</body>
+</html>
