@@ -1,49 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>Sudden Face</title>
+<title>⚠️ DO NOT OPEN AT NIGHT</title>
 
 <style>
-/* Sudden face */
-#face {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("images.jpeg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 9999;
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:"Comic Sans MS", cursive;
+  text-align:center;
+  overflow:hidden;
 }
 
-/* Show face when active */
-#face.show {
-  opacity: 1;
+/* Flicker effect */
+body{
+  animation:flicker 0.15s infinite;
+}
+@keyframes flicker{
+  0%{opacity:1}
+  50%{opacity:0.92}
+  100%{opacity:1}
+}
+
+/* Comic Panels */
+.panel{
+  border:5px solid white;
+  width:330px;
+  margin:25px auto;
+  padding:20px;
+  background:#111;
+  box-shadow:0 0 30px red;
+}
+
+/* Blood text */
+.blood{
+  color:red;
+  font-size:28px;
+  animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* Ghost */
+#ghost{
+  position:fixed;
+  top:-200px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:180px;
+  opacity:0;
+  transition:0.3s;
+  text-shadow:0 0 40px red;
+}
+
+/* Fake error message */
+#error{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:red;
+  color:white;
+  padding:10px;
+  font-weight:bold;
+  display:none;
+}
+
+/* Dark overlay */
+#dark{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  opacity:0;
+  transition:2s;
 }
 </style>
 </head>
 
 <body>
 
-<button onclick="showFace()">Show Face</button>
+<h1>🏥 LAST SHIFT</h1>
 
-<div id="face"></div>
+<div class="panel">
+তুমি একা হাসপাতালের ৩ নম্বর কেবিনে...
+</div>
+
+<div class="panel">
+মনিটর নিজে নিজে চালু হলো...
+</div>
+
+<div class="panel">
+<p class="blood">"আমি এখনো এখানে..."</p>
+</div>
+
+<div id="ghost">👻</div>
+<div id="dark"></div>
+<div id="error">⚠️ SYSTEM ERROR: SOMEONE IS WATCHING YOU</div>
+
+<audio id="sound">
+<source src="https://www.myinstants.com/media/sounds/horror-scream.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function showFace() {
-  const face = document.getElementById("face");
-  face.classList.add("show");
 
-  // Hide again after 1 second (optional)
-  setTimeout(() => {
-    face.classList.remove("show");
-  }, 1000);
-}
+// Auto darkness
+setTimeout(()=>{
+  document.getElementById("dark").style.opacity = 0.85;
+},4000);
+
+// Ghost drop jump scare
+setTimeout(()=>{
+  let g = document.getElementById("ghost");
+  g.style.top = "40%";
+  g.style.opacity = 1;
+  document.getElementById("sound").play();
+},6000);
+
+// Fake system message
+setTimeout(()=>{
+  document.getElementById("error").style.display="block";
+},8000);
+
+// Screen shake
+setInterval(()=>{
+  document.body.style.transform =
+  `translate(${Math.random()*8-4}px, ${Math.random()*8-4}px)`
+},50);
+
 </script>
 
 </body>
